@@ -1,7 +1,7 @@
 package entidades;
 
 public class Clientes {
-//Ensayando el github
+//Ensayando el github, esto esta funcionando :D
     private String id_Cliente;
     private String nombre;
     private String apellido;

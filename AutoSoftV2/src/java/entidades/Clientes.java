@@ -2,6 +2,8 @@ package entidades;
 
 public class Clientes {
 //Ensayando el github, esto esta funcionando :D
+    
+    // Si funcionaaaaa jajaaj que emoción :3
     private String id_Cliente;
     private String nombre;
     private String apellido;

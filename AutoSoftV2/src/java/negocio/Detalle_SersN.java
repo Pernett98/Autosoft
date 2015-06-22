@@ -5,6 +5,16 @@
  */
 
 package negocio;
+
+
+/**
+ * @author: Santiago Morales
+ * @author: Cristian
+ * @fechaCreacion: 30 Octubre 2014
+ * @version: Autosoft 1.0
+ * 
+ */
+
 import entidades.Detalle_Sers;
 import persistencia.Datos;
 import java.io.IOException;
@@ -15,10 +25,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Cristian
- */
+
 @WebServlet(name = "Detalle_SersN", urlPatterns = {"/Detalle_SersN"})
 public class Detalle_SersN extends HttpServlet {
 
@@ -36,17 +43,62 @@ public class Detalle_SersN extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            //mensajes del sistema
+            /**
+             * @name: mensaje
+             * @type: String
+             * @function: Mostrar un mensaje predeterminado
+            */
             String mensaje = "";
             // cual boton se presiona
+            
+            /**
+             * @name: consultar
+             * @type: boolean
+             * @funtion: boton para consultar los clientes
+             */
             boolean consultar = false;
+            
+            /**
+             * @name: buscar
+             * @type: boolean
+             * @function: boton para buscar los clientes
+             */
             boolean buscar = false;
+            
+            /**
+             * @name: crear
+             * @type: boolean
+             * @function: boton para crear clientes
+             */
             boolean crear = false;
+            
+            /**
+             * @name: borrar
+             * @type: boolean
+             * @function: boton para borrar clientes
+             */
             boolean modificar = false;
+            
+            /**
+             * @name: borrar
+             * @type: boolean
+             * @function: boton para borrar clientes
+             */
             boolean borrar = false;
             //boolean listar = false;
+            
+           /**
+             * @name: limpiar
+             * @type: boolean
+             * @function: boton para limpiar lso campos del formulario de clientes
+             */
             boolean limpiar = false;
 
+            /**
+             * @name: getParameter
+             * @function: Mostrar los parametros establecidos en los botones 
+             * 
+             */
             if (request.getParameter("consultar") != null) {
                 consultar = true;
             }
@@ -69,22 +121,93 @@ public class Detalle_SersN extends HttpServlet {
                 limpiar = true;
             }
 
-            //Obtener valor como fue llamado el formulario
+            /**
+             * Los strings del formulario de Detalle_sers, aparecen como fueron llamados
+             */
+            
+            /**
+             * @name: id_Detalle
+             * @type: String
+             */
             String id_Detalle = "";
+            
+            /**
+             * @name: id_Servicio
+             * @type: String
+             */
             String id_Servicio = "";
+            
+            /**
+             * @name: id_Vehiculo
+             * @type: String
+             */
             String id_Vehiculo = "";
+            
+            /**
+             * @name: id_Cliente
+             * @type: String
+             */
             String id_Cliente = "";
+            
+            /**
+             * @name: id_Empleado
+             * @type: String
+             */
             String id_Empleado = "";
+            
+            /**
+             * @name: tipo_Servicio
+             * @type: String
+             */
             String tipo_Servicio = "";
+            
+            /**
+             * @name: fecha_Inicio
+             * @type: String
+             */
             String fecha_Inicio = "";
+            
+              /**
+             * @name: fecha_Fin
+             * @type: String
+             */
             String fecha_Fin = "";
+            
+              /**
+             * @name: articulos
+             * @type: String
+             */
             String articulos = "";
+            
+              /**
+             * @name: datos_vehiculo
+             * @type: String
+             */
             String datos_Vehiculo = "";
+            
+              /**
+             * @name: datos_Servicio
+             * @type: String
+             */
             String datos_Servicio = "";
+            
+              /**
+             * @name: costo_Art
+             * @type: String
+             */
 	    String costo_Art = "";
+            
+              /**
+             * @name: costo_Servicio
+             * @type: String
+             */
             String costo_Servicio = "";
             
-
+            /**
+             * @name: getParameter
+             * @function: Se establecen los parametros para lo strings
+             * 
+             */
             if (request.getParameter("detalle_serRd") != null) {
                 id_Detalle = request.getParameter("detalle_serRd");
             } else if (request.getParameter("id_Detalle") != null) {
@@ -131,33 +254,152 @@ public class Detalle_SersN extends HttpServlet {
 
            
 
-            //Si presiona el boton buscar
+            /**
+             * Este ciclo solo ocurre si se presiona el boton buscar
+             * 
+             */
             if (buscar) {
                 if (id_Detalle.equalsIgnoreCase("")) {
                     mensaje = "Debe de ingresar el numero de identificación de detalle ser";
+                     /**
+                     * @name: setAttribute
+                     * @type: String
+                     * @function: El set esta estableciendo un mensaje 
+                     */
                     request.setAttribute("mensaje", mensaje);
+                    /**
+                     * @name: getRequestDispatcher
+                     * @function: El get esta obteniendo un listado de detalles de servicios
+                     */
                     request.getRequestDispatcher("ListadoDetalle_Sers.jsp").forward(request, response);
                 } else {
                     Datos misDatos = new Datos();
+                    /**
+                     * @name: getDetalle_ser
+                     * @type: String
+                     * @function: Mostrar los datos que esten en id_Detalle
+                     */
                     Detalle_Sers miDetalle_ser = misDatos.getDetalle_ser(id_Detalle);
                     if (miDetalle_ser == null) {
+                        /**
+                         * @name:setAttribute
+                         * @function: Si el servicio buscado no existe, aparece el set mostrando el mensaje 
+                         */
                         mensaje = "El servicio no existe";
                         request.setAttribute("mensaje", mensaje);
+                        /**
+                         * @name: getRequestDispatcher
+                         * @function: El get esta obteniendo un listado de detalles de servicios 
+                         */
                         request.getRequestDispatcher("ListadoDetalle_Sers.jsp").forward(request, response);
                     } else {
+                         /**
+                         * @name: id_Detalle
+                         * @type: String
+                         * @function: La variable id_Detalle llama al getId_Detalle para obtener los datos 
+                         * 
+                         */
                         id_Detalle = "" + miDetalle_ser.getId_Detalle();
+                        
+                        /**
+                         * @name: id_Servicio
+                         * @type: String
+                         * @function: La variable id_Servicio llama al getId_Servicio para obtener los datos 
+                         * 
+                         */
                         id_Servicio = "" + miDetalle_ser.getId_Servicio();
+                        
+                        /**
+                         * @name: id_Vehiculo
+                         * @type: String
+                         * @function: La variable id_Vehiculo llama al getId_Vehiculo para obtener los datos 
+                         * 
+                         */
                         id_Vehiculo = "" + miDetalle_ser.getId_Vehiculo();
+                        
+                        /**
+                         * @name: id_Cliente
+                         * @type: String
+                         * @function: La variable id_Cliente llama al getId_Cliente para obtener los datos 
+                         * 
+                         */
                         id_Cliente = "" + miDetalle_ser.getId_Cliente();
+                        
+                        /**
+                         * @name: id_Empleado
+                         * @type: String
+                         * @function: La variable id_Empleado llama al getId_Empleado para obtener los datos 
+                         * 
+                         */
                         id_Empleado = "" + miDetalle_ser.getId_Empleado();
+                        
+                        /**
+                         * @name: tipo_Servicio
+                         * @type: String
+                         * @function: La variable tipo_Servicio llama al getTipo_Servicio para obtener los datos 
+                         * 
+                         */
                         tipo_Servicio = "" + miDetalle_ser.getTipo_Servicio();
+                        
+                        /**
+                         * @name: fecha_Inicio
+                         * @type: String
+                         * @function: La variable fecha_Inicio llama al getFecha_Inicio para obtener los datos 
+                         * 
+                         */
                         fecha_Inicio = "" + miDetalle_ser.getFecha_Inicio();
+                        
+                        /**
+                         * @name: fecha_Fin
+                         * @type: String
+                         * @function: La variable fecha_Fin llama al getFecha_Fin para obtener los datos 
+                         * 
+                         */
                         fecha_Fin = "" + miDetalle_ser.getFecha_Fin();
+                        
+                        /**
+                         * @name: articulos
+                         * @type: String
+                         * @function: La variable articulos llama al getArticulos para obtener los datos 
+                         * 
+                         */
                         articulos = "" + miDetalle_ser.getArticulos();
+                        
+                        /**
+                         * @name: datos_Vehiculo
+                         * @type: String
+                         * @function: La variable datos_Vehiculo llama al getDatos_Vehiculo para obtener los datos 
+                         * 
+                         */
                         datos_Vehiculo = "" + miDetalle_ser.getDatos_Vehiculo();
+                        
+                        /**
+                         * @name: datos_Servicio
+                         * @type: String
+                         * @function: La variable datos_Servicio llama al getDatos_Servicio para obtener los datos 
+                         * 
+                         */
                         datos_Servicio = "" + miDetalle_ser.getDatos_Servicio();
+                        
+                        /**
+                         * @name: id_Detalle
+                         * @type: String
+                         * @function: La variable id_Detalle llama al getId_Detalle para obtener los datos 
+                         * 
+                         */
                         costo_Art = "" + miDetalle_ser.getCosto_Art();
+                        
+                        /**
+                         * @name: costo_Servicio
+                         * @type: String
+                         * @function: La variable costo_Servicio llama al getCosto_Servicio para obtener los datos 
+                         * 
+                         */
                         costo_Servicio = "" + miDetalle_ser.getCosto_Servicio();
+                         /**
+                         * @name: setAttrbute
+                         * @function: Establece el resultado de los datos anteriormente asignados
+                         */
                         mensaje = "El detalle ser " + id_Detalle + " fue encontrado";
 
                         request.setAttribute("id_Detalle", id_Detalle);
@@ -165,6 +407,10 @@ public class Detalle_SersN extends HttpServlet {
                         request.setAttribute("id_Vehiculo", id_Vehiculo);
                         request.setAttribute("id_Cliente", id_Cliente);
                         request.setAttribute("mensaje", mensaje);
+                        /**
+                         * @name: getRequestDispatcher
+                         * @function: Obtiene el listado de los detalles del servicio
+                         */
                         request.getRequestDispatcher("ListadoDetalle_Sers.jsp").forward(request, response);
                     }
                     misDatos.cerrarConexion();
@@ -172,7 +418,10 @@ public class Detalle_SersN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton consultar
+            /**
+             * Ciclo por el que se pasa, si se presiona el boton consultar
+             * 
+             */
             if (consultar) {
                 if (id_Cliente.equalsIgnoreCase("")) {
                     mensaje = "Debe seleccionar un usuario";
@@ -186,6 +435,12 @@ public class Detalle_SersN extends HttpServlet {
                         request.setAttribute("mensaje", mensaje);
                         request.getRequestDispatcher("ListadoDetalle_Sers.jsp").forward(request, response);
                     } else {
+                         /**
+                         * @name: get
+                         * @type: String
+                         * @function: Obtener los datos asignados en los get
+                         * 
+                         */
                         id_Detalle = "" + miDetalle_ser.getId_Detalle();
                         id_Servicio = "" + miDetalle_ser.getId_Servicio();
                         id_Vehiculo = "" + miDetalle_ser.getId_Vehiculo();
@@ -202,6 +457,13 @@ public class Detalle_SersN extends HttpServlet {
                         
                         mensaje = "El Detalle ser " + id_Detalle + " fue consultado exitosamente";
                         misDatos.cerrarConexion();
+                          
+                        /**
+                         * 
+                         * @name: setAttribute
+                         * @funtion: Establecer los datos de las variables
+                         * 
+                         */
                         request.setAttribute("id_Detalle", id_Detalle);
                         request.setAttribute("id_Servicio", id_Servicio);
                         request.setAttribute("id_Vehiculo", id_Vehiculo);
@@ -216,6 +478,10 @@ public class Detalle_SersN extends HttpServlet {
                         request.setAttribute("costo_Art", costo_Art);
                         request.setAttribute("costo_Servicio", costo_Servicio);
                         request.setAttribute("mensaje", mensaje);
+                        /**
+                         * @name: getRequestDispatcher
+                         * @function: Se obtiene el get con una actualizacion de los detalles del servicio
+                         */
                         request.getRequestDispatcher("ActualizarDetalle_ser.jsp").forward(request, response);
 
                     }
@@ -223,7 +489,10 @@ public class Detalle_SersN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton limpiar
+            /**
+             * 
+             * Ciclo por el que se pasa si se presiona el boton limpiar
+             */
             if (limpiar) {
 
                 id_Cliente = "";
@@ -241,6 +510,10 @@ public class Detalle_SersN extends HttpServlet {
 		costo_Art = "";
 		costo_Servicio = "";
                 mensaje = "Campos Limpios ;)";
+                /**
+                 * @name: setAttribute
+                 * @function: Establece los datos de las variables por medio del set
+                 */
                 request.setAttribute("id_Detalle", id_Detalle);
                 request.setAttribute("id_Servicio", id_Servicio);
                 request.setAttribute("id_Vehiculo", id_Vehiculo);
@@ -258,7 +531,9 @@ public class Detalle_SersN extends HttpServlet {
                 request.getRequestDispatcher("NuevoDetalle_ser.jsp").forward(request, response);
             }
 
-            //Si presiona el boton nuevo
+            /**
+             * Ciclo por el que se pasa si se presiona el boton nuevo
+             */
             if (crear) {
                 if (id_Detalle.equals("")) {
                 } else if (id_Servicio.equals("")) {
@@ -305,7 +580,9 @@ public class Detalle_SersN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton modificar
+            /**
+             * Ciclo por el que pasa si se presiona el boton modificar
+             */
             if (modificar) {
                 if (id_Detalle.equals("")) {
                     mensaje = "Debe ingresar un numero de Identificación detalle serv";
@@ -366,7 +643,9 @@ public class Detalle_SersN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton borrar
+            /**
+             * Ciclo por el que pasa si se presiona el boton borrar
+             */
             if (borrar) {
                 if (id_Detalle.equalsIgnoreCase("")) {
                     mensaje = "Debe de seleccionar un Detalle ser";

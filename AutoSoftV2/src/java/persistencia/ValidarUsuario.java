@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package persistencia;
 
 import java.io.IOException;
@@ -18,6 +12,7 @@ import javax.servlet.http.HttpSession;
 /**
  *
  * @author Cristian
+ * @version Autosoft 1.0
  */
 @WebServlet(name = "ValidarUsuario", urlPatterns = {"/ValidarUsuario"})
 public class ValidarUsuario extends HttpServlet {
@@ -36,24 +31,41 @@ public class ValidarUsuario extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try  {
-            //Objeto de BD
+            /**
+             *Objeto de BD
+             */
+            
             Datos misDatos = new Datos ();
             
-            //valores tomar de jsp
+            
+            /**
+             *valores tomar de jsp 
+             */
+            
             String usuario = request.getParameter("usuario");
             String empleado = request.getParameter("usuario");
             String cliente = request.getParameter("usuario");
             String clave = request.getParameter("clave");
             
-            //Validamos Usuario
+            /**
+             *Validamos Usuario 
+             */
+            
             out.println(misDatos.validarUsuario(usuario, clave));
             
-            //almacenar el usuario logeado en la sesión
+            
+            /**
+             * almacenar el usuario logeado en la sesión
+             */
+           
             HttpSession sesion = request.getSession(true);
             sesion.setAttribute("usuario", misDatos.getUsuario(usuario));
             sesion.setAttribute("empleado", misDatos.getEmpleado(empleado));
             sesion.setAttribute("cliente", misDatos.getCliente(cliente));
-            //Cerrar conexion de BD
+            /**
+             *Cerrar conexion de BD
+             */
+            
             misDatos.cerrarConexion();
         } finally {
             out.close();

@@ -5,14 +5,6 @@
  */
 package negocio;
 
-/**
- * @author: Santiago Morales
- * @author: Cristian
- * @creationDate: 30 Octubre 2014
- * @version: Autosoft 1.0 
- * 
- */
-
 import entidades.Clientes;
 import entidades.Usuarios;
 import persistencia.Datos;
@@ -24,7 +16,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
+/**
+ *
+ * @author Cristian
+ */
 @WebServlet(name = "ClientesN", urlPatterns = {"/ClientesN"})
 public class ClientesN extends HttpServlet {
 
@@ -42,62 +37,17 @@ public class ClientesN extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         PrintWriter out = response.getWriter();
         try {
-            /**
-             * @name: mensaje
-             * @type: String
-             * @function: Mostrar un mensaje predeterminado
-            */
+            //mensajes del sistema
             String mensaje = "";
-            
-            /**
-             * @name: consultar
-             * @type: boolean
-             * @funtion: boton para consultar los clientes
-             */
+            // cual boton se presiona
             boolean consultar = false;
-            
-            /**
-             * @name: buscar
-             * @type: boolean
-             * @function: boton para buscar los clientes
-             */
             boolean buscar = false;
-            
-            /**
-             * @name: crear
-             * @type: boolean
-             * @function: boton para crear clientes
-             */
             boolean crear = false;
-            
-            /**
-             * @name: modificar
-             * @type: boolean
-             * @function: boton para modificar los clientes
-             */
             boolean modificar = false;
-            
-            /**
-             * @name: borrar
-             * @type: boolean
-             * @function: boton para borrar clientes
-             */
             boolean borrar = false;
-            
             //boolean listar = false;
-            
-            /**
-             * @name: limpiar
-             * @type: boolean
-             * @function: boton para limpiar lso campos del formulario de clientes
-             */
             boolean limpiar = false;
 
-            /**
-             * @name: getParameter
-             * @function: Mostrar los parametros establecidos en los botones 
-             * 
-             */
             if (request.getParameter("consultar") != null) {
                 consultar = true;
             }
@@ -120,100 +70,22 @@ public class ClientesN extends HttpServlet {
                 limpiar = true;
             }
 
-            /**
-             * Los strings del formulario de clientes, aparecen como fueron llamados
-            */
-            
-            /**
-             * @name: id_Cliente
-             * @type: String
-             */
+            //Obtener valor como fue llamado el formulario
             String id_Cliente = "";
-            
-            /**
-             * @name: nombre
-             * @type: String
-             */
             String nombre = "";
-            
-            /**
-             * @name: apellido
-             * @type: String
-             */
             String apellido = "";
-            
-            /**
-             * @name: fecha_Nacimiento
-             * @type: String
-             */
             String fecha_Nacimiento = "";
-            
-            /**
-             * @name: genero
-             * @type: int
-             */
             String genero = "";
-            
-            /**
-             * @name: telefono
-             * @type: String
-             */
             String telefono = "";
-            
-            /**
-             * @name: celular
-             * @type: String
-             */
             String celular = "";
-            
-            /**
-             * @name: pais
-             * @type: String
-             */
             String pais = "";
-            
-            /**
-             * @name: departamento
-             * @type: String
-             */
             String departamento = "";
-            
-            /**
-             * @name: ciudad
-             * @type: String
-             */
             String ciudad = "";
-            
-            /**
-             * @name: direccion
-             * @type: String
-             */
             String direccion = "";
-            
-            /**
-             * @name: ocupacion
-             * @type: String
-             */
             String ocupacion = "";
-            
-            /**
-             * @name: empresa
-             * @type: String
-             */
             String empresa = "";
-            
-            /**
-             * @name: correo
-             * @type: String
-             */
             String correo = "";
 
-            
-            /**
-             * @name: getParameter
-             * @function: Se establecen los parametros para lo strings
-             * 
-             */
             if (request.getParameter("clienteRd") != null) {
                 id_Cliente = request.getParameter("clienteRd");
             } else if (request.getParameter("id_Cliente") != null) {
@@ -259,143 +131,36 @@ public class ClientesN extends HttpServlet {
                 correo = request.getParameter("correo");
             }
 
- 
-            /**
-             * Este ciclo solo ocurre si se presiona el boton buscar
-             * 
-             */
+            //Si presiona el boton buscar
             if (buscar) {
                 if (id_Cliente.equalsIgnoreCase("")) {
                     mensaje = "Debe de ingresar el numero de identificación";
-                    /**
-                     * @name: setAttribute
-                     * @type: String
-                     * @function: El set esta estableciendo un mensaje 
-                     */
                     request.setAttribute("mensaje", mensaje);
-                    /**
-                     * @name: getRequestDispatcher
-                     * @function: El get esta obteniendo un listado de clientes
-                     */
                     request.getRequestDispatcher("ListadoClientes.jsp").forward(request, response);
                 } else {
                     Datos misDatos = new Datos();
-                    /**
-                     * @name: getCliente
-                     * @type: String
-                     * @function: Mostrar los datos que esten en id_Cliente
-                     */
                     Clientes miCliente = misDatos.getCliente(id_Cliente);
                     if (miCliente == null) {
-                        /**
-                         * @name:setAttribute
-                         * @function: Si el cliente buscado no existe, aparece el set mostrando el mensaje 
-                         */
                         mensaje = "El Cliente no existe";
                         request.setAttribute("mensaje", mensaje);
-                        /**
-                         * @name: getRequestDispatcher
-                         * @function: El get esta obteniendo un listado de clientes
-                         */
                         request.getRequestDispatcher("ListadoClientes.jsp").forward(request, response);
                     } else {
-                        /**
-                         * @name: id_Cliente
-                         * @type: String
-                         * @function: La variable id_Cliente llama al getId_Cliente para obtener los datos 
-                         * 
-                         */
                         id_Cliente = "" + miCliente.getId_Cliente();
-                        /**
-                         * @name: nombre
-                         * @type: String
-                         * @function: La variable nombre llama al getNombre para obtener los datos
-                         */
                         nombre = "" + miCliente.getNombre();
-                        /**
-                         * @name: apellido
-                         * @type: String
-                         * @function: La variable apellidos llama al getApellido para obtener los datos
-                         */
                         apellido = "" + miCliente.getApellido();
-                         /**
-                         * @name: apellido
-                         * @type: String
-                         * @function: La variable apellidos llama al getApellido para obtener los datos
-                         */
                         fecha_Nacimiento = "" + miCliente.getFecha_Nacimiento();
-                         /**
-                         * @name: fecha_Nacimiento
-                         * @type: String
-                         * @function: La variable fecha_Nacimiento llama al getFecha_Nacmiento para obtener los datos
-                         */
                         genero = "" + miCliente.getGenero();
-                         /**
-                         * @name: genero
-                         * @type: int
-                         * @function: La variable genero llama al getGenero para obtener los datos
-                         */
                         telefono = "" + miCliente.getTelefono();
-                         /**
-                         * @name: telefono
-                         * @type: String
-                         * @function: La variable telefono llama al getTelefono para obtener los datos
-                         */
                         celular = "" + miCliente.getCelular();
-                         /**
-                         * @name: celular
-                         * @type: String
-                         * @function: La variable celular llama al getCelular para obtener los datos
-                         */
-                        pais = "" + miCliente.getPais(); 
-                        /**
-                         * @name: pais
-                         * @type: String
-                         * @function: La variable pais llama al getPais para obtener los datos
-                         */
+                        pais = "" + miCliente.getPais();
                         departamento = "" + miCliente.getDepartamento();
-                         /**
-                         * @name: departamento
-                         * @type: String
-                         * @function: La variable departamento llama al getDepartamento para obtener los datos
-                         */
                         ciudad = "" + miCliente.getCiudad();
-                         /**
-                         * @name: ciudad
-                         * @type: String
-                         * @function: La variable ciudad llama al getCiudad para obtener los datos
-                         */
                         direccion = "" + miCliente.getDireccion();
-                         /**
-                         * @name: direccion
-                         * @type: String
-                         * @function: La variable direccion llama al getADireccion para obtener los datos
-                         */
                         ocupacion = "" + miCliente.getOcupacion();
-                         /**
-                         * @name: ocupacion
-                         * @type: String
-                         * @function: La variable ocupacion llama al getOcupacion para obtener los datos
-                         */
                         empresa = "" + miCliente.getEmpresa();
-                         /**
-                         * @name: empresa
-                         * @type: String
-                         * @function: La variable empresa llama al getEmpresa para obtener los datos
-                         */
                         correo = "" + miCliente.getCorreo();
-                         /**
-                         * @name: correo
-                         * @type: String
-                         * @function: La variable correo llama al getCorreo para obtener los datos
-                         */
                         mensaje = "El usuario " + id_Cliente + " fue encontrado";
-                        
-                        
-                        /**
-                         * @name: setAttrbute
-                         * @function: Establece el resultado de los datos anteriormente asignados
-                         */
+
                         request.setAttribute("id_Cliente", id_Cliente);
                         request.setAttribute("nombre", nombre);
                         request.setAttribute("apellido", apellido);
@@ -411,10 +176,6 @@ public class ClientesN extends HttpServlet {
                         request.setAttribute("empresa", empresa);
                         request.setAttribute("correo", correo);
                         request.setAttribute("mensaje", mensaje);
-                        /**
-                         * @name: getRequestDispatcher
-                         * @function: Obtiene el listado de los clientes
-                         */
                         request.getRequestDispatcher("ListadoClientes.jsp").forward(request, response);
                     }
                     misDatos.cerrarConexion();
@@ -422,10 +183,7 @@ public class ClientesN extends HttpServlet {
                 }
             }
 
-            /**
-             * Ciclo por el que se pasa, si se presiona el boton consultar
-             * 
-             */
+            //Si presiona el boton consultar
             if (consultar) {
                 if (id_Cliente.equalsIgnoreCase("")) {
                     mensaje = "Debe seleccionar un usuario";
@@ -439,12 +197,6 @@ public class ClientesN extends HttpServlet {
                         request.setAttribute("mensaje", mensaje);
                         request.getRequestDispatcher("ListadoClientes.jsp").forward(request, response);
                     } else {
-                        /**
-                         * @name: get
-                         * @type: String
-                         * @function: Obtener los datos asignados en los get
-                         * 
-                         */
                         id_Cliente = "" + miCliente.getId_Cliente();
                         nombre = "" + miCliente.getNombre();
                         apellido = "" + miCliente.getApellido();
@@ -462,12 +214,6 @@ public class ClientesN extends HttpServlet {
 
                         mensaje = "El cliente " + id_Cliente + " fue consultado exitosamente";
                         misDatos.cerrarConexion();
-                        /**
-                         * 
-                         * @name: setAttribute
-                         * @funtion: Establecer los datos de las variables
-                         * 
-                         */
                         request.setAttribute("id_Cliente", id_Cliente);
                         request.setAttribute("nombre", nombre);
                         request.setAttribute("apellido", apellido);
@@ -483,10 +229,6 @@ public class ClientesN extends HttpServlet {
                         request.setAttribute("empresa", empresa);
                         request.setAttribute("correo", correo);
                         request.setAttribute("mensaje", mensaje);
-                        /**
-                         * @name: getRequestDispatcher
-                         * @function: Se obtiene el get con una actualizacion de los clientes
-                         */
                         request.getRequestDispatcher("ActualizarClientes.jsp").forward(request, response);
 
                     }
@@ -494,10 +236,7 @@ public class ClientesN extends HttpServlet {
                 }
             }
 
-            /**
-             * 
-             * Ciclo por el que se pasa si se presiona el boton limpiar
-             */
+            //Si presiona el boton limpiar
             if (limpiar) {
 
                 id_Cliente = "";
@@ -515,10 +254,6 @@ public class ClientesN extends HttpServlet {
                 empresa = "";
                 correo = "";
                 mensaje = "Campos Limpios ;)";
-                /**
-                 * @name: setAttribute
-                 * @function: Establece los datos de las variables por medio del set
-                 */
                 request.setAttribute("id_Cliente", id_Cliente);
                 request.setAttribute("nombre", nombre);
                 request.setAttribute("apellido", apellido);
@@ -537,9 +272,7 @@ public class ClientesN extends HttpServlet {
                 request.getRequestDispatcher("NuevoCliente.jsp").forward(request, response);
             }
 
-            /**
-             * Ciclo por el que se pasa si se presiona el boton nuevo
-             */
+            //Si presiona el boton nuevo
             if (crear) {
                 if (id_Cliente.equals("")) {
                 } else if (nombre.equals("")) {
@@ -592,9 +325,8 @@ public class ClientesN extends HttpServlet {
                     misDatos.cerrarConexion();
                 }
             }
-            /**
-             * Ciclo por el que pasa si se presiona el boton modificar
-             */
+
+            //Si presiona el boton modificar
             if (modificar) {
                 if (id_Cliente.equals("")) {
                 } else if (nombre.equals("")) {
@@ -643,10 +375,8 @@ public class ClientesN extends HttpServlet {
                     misDatos.cerrarConexion();
                 }
             }
-            
-            /**
-             * Ciclo por el que pasa si se presiona el boton borrar
-             */
+
+            //Si presiona el boton borrar
             if (borrar) {
                 if (id_Cliente.equalsIgnoreCase("")) {
                     mensaje = "Debe de seleccionar un Cliente";

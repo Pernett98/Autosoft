@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package negocio;
 
 import entidades.Usuarios;
@@ -16,8 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- *
- * @author Cristian
+ * @author Santiago Morales y Cristian 
+ * @version Autosoft 1.0
  */
 @WebServlet(name = "UsuariosN", urlPatterns = {"/UsuariosN"})
 public class UsuariosN extends HttpServlet {
@@ -37,11 +33,16 @@ public class UsuariosN extends HttpServlet {
         PrintWriter out = response.getWriter();
         try {
             /*  out.println("<!DOCTYPE html>");TODO output your page here. You may use following sample code. */
-
-            //mensajes del sistema
+            /**
+             *mensajes del sistema 
+             */
+            
             String mensaje = "";
 
-            // cual boton se presiona
+            /**
+             *cual boton se presiona
+             */
+            
             boolean consultar = false;
             boolean buscar = false;
             boolean crear = false;
@@ -72,7 +73,10 @@ public class UsuariosN extends HttpServlet {
                 limpiar = true;
             }
 
-            //Obtener valor como fue llamado el formulario
+            /**
+             *Obtener valor como fue llamado el formulario 
+             */
+            
             String id_Usuario = "";
             String perfil = "";
             String contrasena = "";
@@ -97,7 +101,10 @@ public class UsuariosN extends HttpServlet {
             if (request.getParameter("foto") != null) {
                 foto = request.getParameter("foto");
             }
-            //Si presiona el boton buscar
+            /**
+             *Si presiona el boton buscar
+             */
+            
             if (buscar) {
                 if (id_Usuario.equalsIgnoreCase("")) {
                     mensaje = "Debe de ingresar el numero de identificación";
@@ -124,8 +131,10 @@ public class UsuariosN extends HttpServlet {
                     misDatos.cerrarConexion();
                 }
             }
-
-            //Si presiona el boton consultar
+            /**
+             *Si presiona el boton consultar 
+             */
+            
             if (consultar) {
                 if (id_Usuario.equalsIgnoreCase("")) {
                     mensaje = "Debe de ingresar el numero de identificación";
@@ -161,7 +170,10 @@ public class UsuariosN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton limpiar
+            /**
+             *Si presiona el boton limpiar 
+             */
+            
             if (limpiar) {
                 id_Usuario = "";
                 perfil = "";
@@ -177,7 +189,10 @@ public class UsuariosN extends HttpServlet {
                 request.getRequestDispatcher("NuevoUsuario.jsp").forward(request, response);
             }
 
-            //Si presiona el boton nuevo
+            /**
+             *Si presiona el boton nuevo 
+             */
+            
             if (crear) {
                 if (id_Usuario.equals("")) {
                 } else if (perfil.equals("0")) {
@@ -214,7 +229,10 @@ public class UsuariosN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton modificar
+            /**
+             *Si presiona el boton modificar
+             */
+           
             if (modificar) {
                 if (id_Usuario.equals("")) {
                     mensaje = "Debe ingresar un numero de Identificación";
@@ -260,8 +278,11 @@ public class UsuariosN extends HttpServlet {
                     misDatos.cerrarConexion();
                 }
             }
-
-            //Si presiona el boton borrar
+            
+            /**
+             *Si presiona el boton borrar
+             */
+            
             if (borrar) {
                 if (id_Usuario.equalsIgnoreCase("")) {
                     mensaje = "Debe de ingresar el numero de identificación";

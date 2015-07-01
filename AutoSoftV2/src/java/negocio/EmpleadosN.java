@@ -19,6 +19,8 @@ import persistencia.Datos;
 /**
  *
  * @author Cristian
+ * @version Autosoft 1.0 
+ * 
  */
 @WebServlet(name = "EmpleadosN", urlPatterns = {"/EmpleadosN"})
 public class EmpleadosN extends HttpServlet {
@@ -70,7 +72,9 @@ public class EmpleadosN extends HttpServlet {
                 limpiar = true;
             }
 
-            //Obtener valor como fue llamado el formulario
+            /**
+             *Obtener valor como fue llamado el formulario 
+             */
             String id_Empleado = "";
             String cargo = "";
             String nombre = "";
@@ -131,7 +135,9 @@ public class EmpleadosN extends HttpServlet {
                 correo = request.getParameter("correo");
             }
 
-            //Si presiona el boton buscar
+            /**
+             * Si presiona el boton buscar
+             */
             if (buscar) {
                 if (id_Empleado.equalsIgnoreCase("")) {
                     mensaje = "Debe de ingresar el numero de identificación";
@@ -165,7 +171,9 @@ public class EmpleadosN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton consultar
+            /**
+             * Si presiona el boton consultar
+             */ 
             if (consultar) {
                 if (id_Empleado.equalsIgnoreCase("")) {
                     mensaje = "Debe seleccionar un usuario";
@@ -218,7 +226,9 @@ public class EmpleadosN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton limpiar
+            /**
+             * Si presiona el boton limpiar 
+             */
             if (limpiar) {
 
                 id_Empleado = "";
@@ -254,7 +264,9 @@ public class EmpleadosN extends HttpServlet {
                 request.getRequestDispatcher("NuevoEmpleado.jsp").forward(request, response);
             }
 
-            //Si presiona el boton nuevo
+            /**
+             * Si presiona el boton nuevo 
+             */
             if (crear) {
                 if (id_Empleado.equals("")) {
                 } else if (cargo.equals("")) {
@@ -309,7 +321,9 @@ public class EmpleadosN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton modificar
+            /**
+             * Si presiona el boton modificar
+             */
             if (modificar) {
                 if (id_Empleado.equals("")) {
                     mensaje = "Debe ingresar un numero de Identificación";
@@ -375,7 +389,9 @@ public class EmpleadosN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton borrar
+            /**
+             * Si presiona el boton borrar
+             */
             if (borrar) {
                 if (id_Empleado.equalsIgnoreCase("")) {
                     mensaje = "Debe de seleccionar un empleado";

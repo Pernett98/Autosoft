@@ -23,7 +23,23 @@ public class Empleados {
     private String direccion;
     private String correo;
 
-    
+    /**
+     * En este constructor  se asignan el mismo valor de los parametros a las variables
+     * @param id_Empleado Recibe  id_Empleado de tipo cadena
+     * @param cargo Recibe  cargo de tipo entero
+     * @param nombre Recibe  nombre de tipo cadena
+     * @param apellido Recibe  apellido de tipo cadena
+     * @param fecha_Nacimiento Recibe  fecha_Nacimiento de tipo cadena
+     * @param genero Recibe  genero de tipo entero
+     * @param estado_Civil Recibe estado_Civil de tipo entero
+     * @param telefono Recibe  telefono de tipo cadena
+     * @param celular Recibe  celular de tipo cadena
+     * @param pais Recibe  pais de tipo cadena
+     * @param departamento Recibe departamento  de tipo cadena
+     * @param ciudad Recibe  ciudad  de tipo cadena
+     * @param direccion Recibe direccion de tipo cadena
+     * @param correo Recibe  correo de tipo cadena
+     */
     public Empleados(String id_Empleado, int cargo, String nombre, String apellido, String fecha_Nacimiento, int genero, int estado_Civil, String telefono, String celular, String pais, String departamento, String ciudad, String direccion, String correo) {
         this.id_Empleado = id_Empleado;
         this.cargo = cargo;
@@ -39,7 +55,7 @@ public class Empleados {
         this.ciudad = ciudad;
         this.direccion = direccion;
         this.correo = correo;
-    }
+    }//Cierre del constructor 
     
     /**
      * La variable id_Empleado Contiene  lo que va ser la identificación del empleado 

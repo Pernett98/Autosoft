@@ -6,7 +6,7 @@ public class Clientes {
   * @author: Juan Diego Arango
   * @creationDate: 27 Octubre del 2014
   * @version: Autosoft 1.0
-  * 
+  * cambiandoesto
   */
     
     private String id_Cliente;

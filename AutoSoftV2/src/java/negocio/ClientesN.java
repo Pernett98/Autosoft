@@ -19,6 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author Cristian
+ * @version Autosoft 1.0
+ * 
  */
 @WebServlet(name = "ClientesN", urlPatterns = {"/ClientesN"})
 public class ClientesN extends HttpServlet {
@@ -70,7 +72,12 @@ public class ClientesN extends HttpServlet {
                 limpiar = true;
             }
 
-            //Obtener valor como fue llamado el formulario
+            /**
+             * 
+             * Obtener valor como fue llamado el formulario
+             * 
+             */
+            
             String id_Cliente = "";
             String nombre = "";
             String apellido = "";
@@ -131,7 +138,11 @@ public class ClientesN extends HttpServlet {
                 correo = request.getParameter("correo");
             }
 
-            //Si presiona el boton buscar
+            /**
+             * Si presiona el boton buscar
+             * 
+             */
+            
             if (buscar) {
                 if (id_Cliente.equalsIgnoreCase("")) {
                     mensaje = "Debe de ingresar el numero de identificación";
@@ -183,7 +194,11 @@ public class ClientesN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton consultar
+            /**
+             * Si presiona el boton consultar
+             * 
+             */
+            
             if (consultar) {
                 if (id_Cliente.equalsIgnoreCase("")) {
                     mensaje = "Debe seleccionar un usuario";
@@ -236,7 +251,12 @@ public class ClientesN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton limpiar
+            /**
+             * 
+             * Si presiona el boton limpiar
+             * 
+             */
+            
             if (limpiar) {
 
                 id_Cliente = "";
@@ -272,7 +292,11 @@ public class ClientesN extends HttpServlet {
                 request.getRequestDispatcher("NuevoCliente.jsp").forward(request, response);
             }
 
-            //Si presiona el boton nuevo
+            /**
+             * Si presiona el boton nuevo
+             * 
+             */
+            
             if (crear) {
                 if (id_Cliente.equals("")) {
                 } else if (nombre.equals("")) {
@@ -326,7 +350,11 @@ public class ClientesN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton modificar
+            /**
+             * Si presiona el boton modificar
+             * 
+             */
+            
             if (modificar) {
                 if (id_Cliente.equals("")) {
                 } else if (nombre.equals("")) {
@@ -376,7 +404,11 @@ public class ClientesN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton borrar
+            /**
+             * Si presiona el boton borrar
+             * 
+             */
+            
             if (borrar) {
                 if (id_Cliente.equalsIgnoreCase("")) {
                     mensaje = "Debe de seleccionar un Cliente";

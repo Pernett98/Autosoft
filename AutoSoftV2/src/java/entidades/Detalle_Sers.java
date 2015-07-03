@@ -3,7 +3,7 @@ package entidades;
 /**
  *Esta clase define los objetos tanto enteros como de tipo cadena que forman 
  *parte del formulario Clientes
- *@author Diego Arango
+ *@author Santiago Morales
  *@version Autosoft 1.0
  *
  */

@@ -18,6 +18,8 @@ import javax.servlet.http.HttpServletResponse;
 /**
  *
  * @author Cristian
+ * @version Autosoft 1.0
+ * 
  */
 @WebServlet(name = "Detalle_SersN", urlPatterns = {"/Detalle_SersN"})
 public class Detalle_SersN extends HttpServlet {
@@ -69,7 +71,10 @@ public class Detalle_SersN extends HttpServlet {
                 limpiar = true;
             }
 
-            //Obtener valor como fue llamado el formulario
+            /**
+             * Obtener valor como fue llamado el formulario
+             */
+            
             String id_Detalle = "";
             String id_Servicio = "";
             String id_Vehiculo = "";
@@ -131,7 +136,10 @@ public class Detalle_SersN extends HttpServlet {
 
            
 
-            //Si presiona el boton buscar
+            /**
+             * Si presiona el boton buscar
+             */
+            
             if (buscar) {
                 if (id_Detalle.equalsIgnoreCase("")) {
                     mensaje = "Debe de ingresar el numero de identificación de detalle ser";
@@ -172,7 +180,10 @@ public class Detalle_SersN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton consultar
+            /**
+             * Si presiona el boton consultar
+             */
+            
             if (consultar) {
                 if (id_Cliente.equalsIgnoreCase("")) {
                     mensaje = "Debe seleccionar un usuario";
@@ -223,7 +234,10 @@ public class Detalle_SersN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton limpiar
+            /**
+             * Si presiona el boton limpiar
+             */
+            
             if (limpiar) {
 
                 id_Cliente = "";
@@ -258,7 +272,10 @@ public class Detalle_SersN extends HttpServlet {
                 request.getRequestDispatcher("NuevoDetalle_ser.jsp").forward(request, response);
             }
 
-            //Si presiona el boton nuevo
+            /**
+             * Si presiona el boton nuevo
+             */
+            
             if (crear) {
                 if (id_Detalle.equals("")) {
                 } else if (id_Servicio.equals("")) {
@@ -305,7 +322,9 @@ public class Detalle_SersN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton modificar
+            /**
+             * Si presiona el boton modificar
+             */
             if (modificar) {
                 if (id_Detalle.equals("")) {
                     mensaje = "Debe ingresar un numero de Identificación detalle serv";
@@ -366,7 +385,10 @@ public class Detalle_SersN extends HttpServlet {
                 }
             }
 
-            //Si presiona el boton borrar
+            /**
+             * Si presiona el boton borrar
+             */
+            
             if (borrar) {
                 if (id_Detalle.equalsIgnoreCase("")) {
                     mensaje = "Debe de seleccionar un Detalle ser";

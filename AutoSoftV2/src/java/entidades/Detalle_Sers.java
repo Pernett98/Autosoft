@@ -2,7 +2,7 @@ package entidades;
 
 /**
  *Esta clase define los objetos tanto enteros como de tipo cadena que forman 
- *parte del formulario Clientes
+ *parte del formulario Detalle_Sers
  *@author Santiago Morales
  *@version Autosoft 1.0
  *

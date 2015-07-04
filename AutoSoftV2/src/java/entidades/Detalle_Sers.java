@@ -144,7 +144,7 @@ public class Detalle_Sers {
     /**
      * 
      * La variable id_Empleado contiene lo que va a ser la identificacion del empleado
-     * @param id_Empleado 
+     * @param id_Empleado recibe id_Empleado de tipo String
      */
     public void setId_Empleado(String id_Empleado) {
         this.id_Empleado = id_Empleado;
@@ -252,7 +252,7 @@ public class Detalle_Sers {
     /**
      * 
      * La variable datos_Servicio contiene los datos importantes acerca del servicio que ha sido prestado
-     * @param datos_Servicio 
+     * @param datos_Servicio recibe datos_Servicio de tipo String
      */
     public void setDatos_Servicio(String datos_Servicio) {
         this.datos_Servicio = datos_Servicio;

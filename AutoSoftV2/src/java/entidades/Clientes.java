@@ -5,7 +5,7 @@ package entidades;
  *parte del formulario Clientes
  *@author Diego Arango
  *@version Autosoft 1.0
- *
+ *Soy cambio Beta
  */
 
 public class Clientes {
